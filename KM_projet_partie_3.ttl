@@ -1,0 +1,154 @@
+PREFIX : <http://cnam.com/CybersecurityOntology/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+:hasCharacteristic a rdfs:Property .
+:hasEffect a rdfs:Property .
+:hasFeature a rdfs:Property .
+
+
+:hasName  rdfs:subPropertyOf :hasCharacteristic ;
+                   rdfs:domain  :PersonneCybersecurite ;
+                   rdfs:range xsd:string .
+ :bornOn  rdfs:subPropertyOf :hasCharacteristic ;
+                   rdfs:domain  :PersonneCybersecurite ;
+                   rdfs:range xsd:date .
+:createdOn  rdfs:subPropertyOf :hasCharacteristic ;
+                   rdfs:domain  :Logiciel ;
+                   rdfs:range xsd:date .
+:createdBy  rdfs:subPropertyOf :hasCharacteristic ;
+                   rdfs:domain  :TechnologieSecurite ;
+                   rdfs:range :Chercheur .
+:threatenBy  rdfs:subPropertyOf :hasEffect ;
+                   rdfs:domain  :Categorie ;
+                   rdfs:range :VulnerabiliteCyber .
+:improvedWith  rdfs:subPropertyOf :hasEffect ;
+                   rdfs:domain  :Categorie ;
+                   rdfs:range :TechnologieSecurite .
+:availableOn  rdfs:subPropertyOf :hasFeature ;
+                   rdfs:domain  :Application ;
+                   rdfs:range :Systeme .                   
+:systemOf  rdfs:subPropertyOf :hasFeature ;
+                   rdfs:domain  :Systeme ;
+                   rdfs:range :Materiel .
+:protocolFor  rdfs:subPropertyOf :hasFeature ;
+                   rdfs:domain  :Protocole ;
+                   rdfs:domain  :Standart ;
+                   rdfs:range :Standart .
+
+# VulnerabiliteCyber
+:VulnerabiliteCyber rdf:type :Cybersecurite .
+:Logiciel a :VulnerabiliteCyber .
+ :Application a :Logiciel .
+   :Facebook a :Application ;
+     :availableOn :Android ;
+     :createdOn "2004-02-01"^^xsd:date .
+   :Tiktok a :Application .
+ :Serveur a :Logiciel .
+ :Systeme a :Logiciel .
+   :Ios a :Systeme ;
+     :systemOf :Iphone .
+   :Android a :Systeme ;
+     :systemOf :Xiaomi .
+:Materiel a :VulnerabiliteCyber .
+ :Bureautique a :Materiel .
+ :Mobile a :Materiel .
+   :Iphone a :Mobile .
+   :Xiaomi a :Mobile .
+ 
+# RisqueCyber
+:RisqueCyber rdf:type :Cybersecurite .
+:Categorie  a :RisqueCyber .
+ :Interne a :Categorie .
+   :Employe a :Interne .
+   :Prestataire a :Interne .
+ :Internet a :Categorie .
+ :Application a :Categorie .
+ :Confidentialite a :Categorie ;
+   :improvedWith :Stix ;
+   :threatenBy :TikTok .
+:Processus  a :RisqueCyber .
+ :Identification a :Processus .
+ :Audit a :Processus .
+ :Gestion a :Processus .
+ 
+# MenaceCyber
+:MenaceCyber rdf:type :Cybersecurite .
+ :Legal a :MenaceCyber .
+ :Technique a :MenaceCyber .
+ :Business a :MenaceCyber .
+ 
+# TechnologieSecurite
+:TechnologieSecurite  rdf:type :Cybersecurite .
+ :Cryptographie a :TechnologieSecurite .
+   :Encryption: a :Cryptographie .
+     :Cle a :Encryption .
+       :Prive a :Cle .
+       :Public a :Cle .
+     :Symetrique a :Encryption .
+       :Aes a :Symetrique .
+       :Des a :Symetrique .
+     :Assymetrique a :Encryption .
+       :Rsa a :Assymetrique .
+       :DiffieHellman a :Assymetrique ;
+          :createdBy :WhitfieldDiffie ;
+          :createdBy :MartinHellman .
+   :Hachage a :Cryptographie.
+     :Salt a :Hachage .
+     :Algorithme a :Hachage .
+        :Sha1 a :Algorithme .
+        :Md5 a :Algorithme .
+        :Sha256 a :Algorithme .
+ :Protocole a :TechnologieSecurite .
+   :Tls a :Protocole .
+   :Ssh a :Protocole .
+   :Sftp a :Protocole .
+ :Standart a :TechnologieSecurite .
+   :Stix a :Standart .
+   :Taxii a :Standart ;
+     :protocolFor :Stix . 
+   
+# MoyenSecurite
+:MoyenSecurite  rdf:type :Cybersecurite .
+ :Firewall a :MoyenSecurite .
+ :ControleAcces a :MoyenSecurite .
+   :Authentifcation a :ControleAcces .
+   :Autorisation a :ControleAcces.
+ :Detection a :MoyenSecurite .
+   :Ids a :Detection .
+   :Ips a :Detection .
+   :Antivirus a :Detection .
+ :Politique a :MoyenSecurite .
+   :Donnee a :Politique .
+     :Partage a :Donnee .
+     :Manipulation a :Donnee .
+     :Protection a :Donnee .
+     :Retention a :Donnee .
+     
+# PersonneCybersecurite
+:PersonneCybersecurite  rdf:type :Cybersecurite .
+   :Hacker a :PersonneCybersecurite .
+     :BlackHat a :Hacker .
+     :GrayHat a :Hacker .
+     :WhiteHat a :Hacker .
+   :Expert a :PersonneCybersecurite .
+     :Ingenieur a :Expert .
+     :Formateur a :Expert .
+     :Chercheur a :Expert .
+       :WhitfieldDiffie a :Chercheur ;
+           :hasName "Whitfield Diffie" ;
+           :bornOn "1944-06-05"^^xsd:date .
+       :MartinHellman a :Chercheur ;
+           :hasName "Martin Hellman" ;
+           :bornOn "1945-10-02"^^xsd:date .
+   :Activiste a :PersonneCybersecurite .
+   :Cybercriminel a :PersonneCybersecurite .
+     
+# DivisionCybersecurite
+:DivisionCybersecurite  rdf:type :Cybersecurite .
+ :Iot a :DivisionCybersecurite .
+ :Cloud a :DivisionCybersecurite .
+ :Mobile a :DivisionCybersecurite .
+ :Vehicule a :DivisionCybersecurite .
+ :Renseignement a :DivisionCybersecurite .
