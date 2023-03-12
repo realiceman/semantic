@@ -336,7 +336,11 @@
 
 ###  http://cnam.com/CybersecurityOntology#Systeme
 :Systeme rdf:type owl:Class ;
-         rdfs:subClassOf :Logiciel .
+         rdfs:subClassOf :Logiciel ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :systemOf ;
+                           owl:someValuesFrom :Mobile
+                         ] .
 
 
 ###  http://cnam.com/CybersecurityOntology#Technique
