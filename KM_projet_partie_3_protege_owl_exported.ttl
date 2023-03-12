@@ -1,0 +1,544 @@
+@prefix : <http://www.semanticweb.org/yharkati/ontologies/2023/2/untitled-ontology-2/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/yharkati/ontologies/2023/2/untitled-ontology-2/> .
+
+<http://cnam.com/CybersecurityOntology> rdf:type owl:Ontology ;
+                                         owl:versionIRI <http://cnam.com/CybersecurityOntology/1.0.0> ;
+                                         rdfs:comment "This work done for the first module of SEC201, is an attempt for creating a knowledge model for cybersecurity based on its many components." .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://cnam.com/CybersecurityOntology#availableOn
+:availableOn rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasFeaure ;
+             rdfs:domain :Application ;
+             rdfs:range :Systeme .
+
+
+###  http://cnam.com/CybersecurityOntology#bornOn
+:bornOn rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf :hasCharacteristic ;
+        rdfs:domain :PersonneCybersecurite ;
+        rdfs:range [ rdf:type owl:Restriction ;
+                     owl:onProperty owl:topDataProperty ;
+                     owl:someValuesFrom xsd:dateTime
+                   ] .
+
+
+###  http://cnam.com/CybersecurityOntology#createdBy
+:createdBy rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :hasCharacteristic ;
+           rdfs:domain :TechnologieSecurite ;
+           rdfs:range :Chercheur .
+
+
+###  http://cnam.com/CybersecurityOntology#createdOn
+:createdOn rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :hasCharacteristic ;
+           rdfs:domain :Logiciel ;
+           rdfs:range [ rdf:type owl:Restriction ;
+                        owl:onProperty owl:topDataProperty ;
+                        owl:someValuesFrom xsd:dateTime
+                      ] .
+
+
+###  http://cnam.com/CybersecurityOntology#hasCharacteristic
+:hasCharacteristic rdf:type owl:ObjectProperty .
+
+
+###  http://cnam.com/CybersecurityOntology#hasEffect
+:hasEffect rdf:type owl:ObjectProperty .
+
+
+###  http://cnam.com/CybersecurityOntology#hasFeaure
+:hasFeaure rdf:type owl:ObjectProperty .
+
+
+###  http://cnam.com/CybersecurityOntology#hasName
+:hasName rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf :hasCharacteristic ;
+         rdfs:domain :PersonneCybersecurite ;
+         rdfs:range [ rdf:type owl:Restriction ;
+                      owl:onProperty owl:topDataProperty ;
+                      owl:someValuesFrom xsd:string
+                    ] .
+
+
+###  http://cnam.com/CybersecurityOntology#improvedWith
+:improvedWith rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :hasEffect ;
+              rdfs:domain :Categorie ;
+              rdfs:range :TechnologieSecurite .
+
+
+###  http://cnam.com/CybersecurityOntology#protocolFor
+:protocolFor rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasFeaure ;
+             rdfs:domain :Protocole ,
+                         :Standart ;
+             rdfs:range :Standart .
+
+
+###  http://cnam.com/CybersecurityOntology#systemOf
+:systemOf rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :hasFeaure ;
+          rdfs:domain :Systeme ;
+          rdfs:range :Materiel .
+
+
+###  http://cnam.com/CybersecurityOntology#threatenBy
+:threatenBy rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :hasEffect ;
+            rdfs:domain :Categorie ;
+            rdfs:range :VulnerabiliteCyber .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://cnam.com/CybersecurityOntology#Algorithme
+:Algorithme rdf:type owl:Class ;
+            rdfs:subClassOf :Hachage ;
+            owl:disjointWith :Salt .
+
+
+###  http://cnam.com/CybersecurityOntology#Application
+:Application rdf:type owl:Class ;
+             rdfs:subClassOf :Categorie ,
+                             :Logiciel .
+
+
+###  http://cnam.com/CybersecurityOntology#Assymetrique
+:Assymetrique rdf:type owl:Class ;
+              rdfs:subClassOf :Encryption .
+
+
+###  http://cnam.com/CybersecurityOntology#Audit
+:Audit rdf:type owl:Class ;
+       rdfs:subClassOf :Processus .
+
+
+###  http://cnam.com/CybersecurityOntology#Bureautique
+:Bureautique rdf:type owl:Class ;
+             rdfs:subClassOf :Materiel ;
+             owl:disjointWith :Mobile .
+
+
+###  http://cnam.com/CybersecurityOntology#Business
+:Business rdf:type owl:Class ;
+          rdfs:subClassOf :MenaceCyber .
+
+
+###  http://cnam.com/CybersecurityOntology#Categorie
+:Categorie rdf:type owl:Class ;
+           rdfs:subClassOf :RisqueCyber ;
+           owl:disjointWith :Processus .
+
+
+###  http://cnam.com/CybersecurityOntology#Chercheur
+:Chercheur rdf:type owl:Class ;
+           rdfs:subClassOf :Expert .
+
+
+###  http://cnam.com/CybersecurityOntology#Cle
+:Cle rdf:type owl:Class ;
+     rdfs:subClassOf :Encryption .
+
+
+###  http://cnam.com/CybersecurityOntology#Cloud
+:Cloud rdf:type owl:Class ;
+       rdfs:subClassOf :DivisionCybersecurite .
+
+
+###  http://cnam.com/CybersecurityOntology#ControleAcces
+:ControleAcces rdf:type owl:Class ;
+               rdfs:subClassOf :MoyenSecurite .
+
+
+###  http://cnam.com/CybersecurityOntology#Cryptographie
+:Cryptographie rdf:type owl:Class ;
+               rdfs:subClassOf :TechnologieSecurite .
+
+
+###  http://cnam.com/CybersecurityOntology#Cybersecurite
+:Cybersecurite rdf:type owl:Class .
+
+
+###  http://cnam.com/CybersecurityOntology#Detection
+:Detection rdf:type owl:Class ;
+           rdfs:subClassOf :MoyenSecurite .
+
+
+###  http://cnam.com/CybersecurityOntology#DivisionCybersecurite
+:DivisionCybersecurite rdf:type owl:Class ;
+                       rdfs:subClassOf :Cybersecurite .
+
+
+###  http://cnam.com/CybersecurityOntology#Employe
+:Employe rdf:type owl:Class ;
+         rdfs:subClassOf :Interne .
+
+
+###  http://cnam.com/CybersecurityOntology#Encryption
+:Encryption rdf:type owl:Class ;
+            rdfs:subClassOf :Cryptographie .
+
+
+###  http://cnam.com/CybersecurityOntology#Expert
+:Expert rdf:type owl:Class ;
+        rdfs:subClassOf :PersonneCybersecurite ;
+        owl:disjointWith :Hacker .
+
+
+###  http://cnam.com/CybersecurityOntology#Firewall
+:Firewall rdf:type owl:Class ;
+          rdfs:subClassOf :MoyenSecurite .
+
+
+###  http://cnam.com/CybersecurityOntology#Formateur
+:Formateur rdf:type owl:Class ;
+           rdfs:subClassOf :Expert .
+
+
+###  http://cnam.com/CybersecurityOntology#Gestion
+:Gestion rdf:type owl:Class ;
+         rdfs:subClassOf :Processus .
+
+
+###  http://cnam.com/CybersecurityOntology#Hachage
+:Hachage rdf:type owl:Class ;
+         rdfs:subClassOf :Cryptographie .
+
+
+###  http://cnam.com/CybersecurityOntology#Hacker
+:Hacker rdf:type owl:Class ;
+        rdfs:subClassOf :PersonneCybersecurite .
+
+
+###  http://cnam.com/CybersecurityOntology#IOT
+:IOT rdf:type owl:Class ;
+     rdfs:subClassOf :DivisionCybersecurite .
+
+
+###  http://cnam.com/CybersecurityOntology#Identification
+:Identification rdf:type owl:Class ;
+                rdfs:subClassOf :Processus .
+
+
+###  http://cnam.com/CybersecurityOntology#Ingenieur
+:Ingenieur rdf:type owl:Class ;
+           rdfs:subClassOf :Expert .
+
+
+###  http://cnam.com/CybersecurityOntology#Interne
+:Interne rdf:type owl:Class ;
+         rdfs:subClassOf :Categorie .
+
+
+###  http://cnam.com/CybersecurityOntology#Internet
+:Internet rdf:type owl:Class ;
+          rdfs:subClassOf :Categorie .
+
+
+###  http://cnam.com/CybersecurityOntology#Legal
+:Legal rdf:type owl:Class ;
+       rdfs:subClassOf :MenaceCyber .
+
+
+###  http://cnam.com/CybersecurityOntology#Logiciel
+:Logiciel rdf:type owl:Class ;
+          rdfs:subClassOf :VulnerabiliteCyber ;
+          owl:disjointWith :Materiel .
+
+
+###  http://cnam.com/CybersecurityOntology#Materiel
+:Materiel rdf:type owl:Class ;
+          rdfs:subClassOf :VulnerabiliteCyber .
+
+
+###  http://cnam.com/CybersecurityOntology#MenaceCyber
+:MenaceCyber rdf:type owl:Class ;
+             rdfs:subClassOf :Cybersecurite .
+
+
+###  http://cnam.com/CybersecurityOntology#Mobile
+:Mobile rdf:type owl:Class ;
+        rdfs:subClassOf :DivisionCybersecurite ,
+                        :Materiel .
+
+
+###  http://cnam.com/CybersecurityOntology#MoyenSecurite
+:MoyenSecurite rdf:type owl:Class ;
+               rdfs:subClassOf :Cybersecurite .
+
+
+###  http://cnam.com/CybersecurityOntology#PersonneCybersecurite
+:PersonneCybersecurite rdf:type owl:Class ;
+                       rdfs:subClassOf :Cybersecurite .
+
+
+###  http://cnam.com/CybersecurityOntology#Politique
+:Politique rdf:type owl:Class ;
+           rdfs:subClassOf :MoyenSecurite .
+
+
+###  http://cnam.com/CybersecurityOntology#Prestataire
+:Prestataire rdf:type owl:Class ;
+             rdfs:subClassOf :Interne .
+
+
+###  http://cnam.com/CybersecurityOntology#Processus
+:Processus rdf:type owl:Class ;
+           rdfs:subClassOf :RisqueCyber .
+
+
+###  http://cnam.com/CybersecurityOntology#Protocole
+:Protocole rdf:type owl:Class ;
+           rdfs:subClassOf :TechnologieSecurite .
+
+
+###  http://cnam.com/CybersecurityOntology#Renseignement
+:Renseignement rdf:type owl:Class ;
+               rdfs:subClassOf :DivisionCybersecurite .
+
+
+###  http://cnam.com/CybersecurityOntology#RisqueCyber
+:RisqueCyber rdf:type owl:Class ;
+             rdfs:subClassOf :Cybersecurite .
+
+
+###  http://cnam.com/CybersecurityOntology#Salt
+:Salt rdf:type owl:Class ;
+      rdfs:subClassOf :Hachage .
+
+
+###  http://cnam.com/CybersecurityOntology#Serveur
+:Serveur rdf:type owl:Class ;
+         rdfs:subClassOf :Logiciel .
+
+
+###  http://cnam.com/CybersecurityOntology#Standart
+:Standart rdf:type owl:Class ;
+          rdfs:subClassOf :TechnologieSecurite .
+
+
+###  http://cnam.com/CybersecurityOntology#Symetrique
+:Symetrique rdf:type owl:Class ;
+            rdfs:subClassOf :Encryption .
+
+
+###  http://cnam.com/CybersecurityOntology#Systeme
+:Systeme rdf:type owl:Class ;
+         rdfs:subClassOf :Logiciel .
+
+
+###  http://cnam.com/CybersecurityOntology#Technique
+:Technique rdf:type owl:Class ;
+           rdfs:subClassOf :MenaceCyber .
+
+
+###  http://cnam.com/CybersecurityOntology#TechnologieSecurite
+:TechnologieSecurite rdf:type owl:Class ;
+                     rdfs:subClassOf :Cybersecurite .
+
+
+###  http://cnam.com/CybersecurityOntology#Vehicule
+:Vehicule rdf:type owl:Class ;
+          rdfs:subClassOf :DivisionCybersecurite .
+
+
+###  http://cnam.com/CybersecurityOntology#VulnerabiliteCyber
+:VulnerabiliteCyber rdf:type owl:Class ;
+                    rdfs:subClassOf :Cybersecurite .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://cnam.com/CybersecurityOntology#Aes
+:Aes rdf:type owl:NamedIndividual ,
+              :Symetrique .
+
+
+###  http://cnam.com/CybersecurityOntology#Confidentialite
+:Confidentialite rdf:type owl:NamedIndividual ,
+                          :Categorie .
+
+
+###  http://cnam.com/CybersecurityOntology#Des
+:Des rdf:type owl:NamedIndividual ,
+              :Symetrique .
+
+
+###  http://cnam.com/CybersecurityOntology#DiffieHellman
+:DiffieHellman rdf:type owl:NamedIndividual ,
+                        :Assymetrique .
+
+
+###  http://cnam.com/CybersecurityOntology#MartinHellman
+:MartinHellman rdf:type owl:NamedIndividual ,
+                        :Chercheur .
+
+
+###  http://cnam.com/CybersecurityOntology#Md5
+:Md5 rdf:type owl:NamedIndividual ,
+              :Algorithme .
+
+
+###  http://cnam.com/CybersecurityOntology#Prive
+:Prive rdf:type owl:NamedIndividual ,
+                :Cle .
+
+
+###  http://cnam.com/CybersecurityOntology#Publique
+:Publique rdf:type owl:NamedIndividual ,
+                   :Cle .
+
+
+###  http://cnam.com/CybersecurityOntology#Rsa
+:Rsa rdf:type owl:NamedIndividual ,
+              :Assymetrique .
+
+
+###  http://cnam.com/CybersecurityOntology#Sftp
+:Sftp rdf:type owl:NamedIndividual ,
+               :Protocole .
+
+
+###  http://cnam.com/CybersecurityOntology#Sha1
+:Sha1 rdf:type owl:NamedIndividual ,
+               :Algorithme .
+
+
+###  http://cnam.com/CybersecurityOntology#Sha256
+:Sha256 rdf:type owl:NamedIndividual ,
+                 :Algorithme .
+
+
+###  http://cnam.com/CybersecurityOntology#Ssh
+:Ssh rdf:type owl:NamedIndividual ,
+              :Protocole .
+
+
+###  http://cnam.com/CybersecurityOntology#Stix
+:Stix rdf:type owl:NamedIndividual ,
+               :Standart .
+
+
+###  http://cnam.com/CybersecurityOntology#Taxii
+:Taxii rdf:type owl:NamedIndividual ,
+                :Standart .
+
+
+###  http://cnam.com/CybersecurityOntology#Tls
+:Tls rdf:type owl:NamedIndividual ,
+              :Protocole .
+
+
+###  http://cnam.com/CybersecurityOntology#WhitfieldDiffie
+:WhitfieldDiffie rdf:type owl:NamedIndividual ,
+                          :Chercheur .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Application
+                :Employe
+                :Interne
+                :Internet
+                :Prestataire
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Application
+                :Serveur
+                :Systeme
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Assymetrique
+                :Cle
+                :Symetrique
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Audit
+                :Gestion
+                :Identification
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Business
+                :Legal
+                :Technique
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Chercheur
+                :Formateur
+                :Ingenieur
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Cloud
+                :IOT
+                :Mobile
+                :Renseignement
+                :Vehicule
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :ControleAcces
+                :Detection
+                :Firewall
+                :Politique
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Cryptographie
+                :Encryption
+                :Hachage
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :DivisionCybersecurite
+                :MenaceCyber
+                :MoyenSecurite
+                :PersonneCybersecurite
+                :RisqueCyber
+                :TechnologieSecurite
+                :VulnerabiliteCyber
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
