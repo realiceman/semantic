@@ -57,7 +57,7 @@
 
 
 ###  http://cnam.com/CybersecurityOntology#hasFeaure
-:hasFeaure rdf:type owl:ObjectProperty .
+:hasFeature rdf:type owl:ObjectProperty .
 
 
 ###  http://cnam.com/CybersecurityOntology#hasName
@@ -79,7 +79,7 @@
 
 ###  http://cnam.com/CybersecurityOntology#protocolFor
 :protocolFor rdf:type owl:ObjectProperty ;
-             rdfs:subPropertyOf :hasFeaure ;
+             rdfs:subPropertyOf :hasFeature ;
              rdfs:domain :Protocole ,
                          :Standart ;
              rdfs:range :Standart .
@@ -87,7 +87,7 @@
 
 ###  http://cnam.com/CybersecurityOntology#systemOf
 :systemOf rdf:type owl:ObjectProperty ;
-          rdfs:subPropertyOf :hasFeaure ;
+          rdfs:subPropertyOf :hasFeature ;
           rdfs:domain :Systeme ;
           rdfs:range :Materiel .
 
