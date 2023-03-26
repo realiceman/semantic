@@ -14,9 +14,9 @@ g = Graph()
 url = URIRef(endpoint_url)
 g.parse(url, format='turtle')
 
-##################################################
-# Checking the length of my CybersecurityOntology#
-##################################################
+###################################################
+# Checking the length of my CybersecurityOntology #
+###################################################
 
 count_query = prepareQuery('''
 PREFIX : <http://cnam.com/CybersecurityOntology/>
@@ -35,9 +35,9 @@ print("***************************************************")
 print("***************************************************")
 
 
-#########################################################
-# Querying the ontology and get the names of researchers#
-#########################################################
+##########################################################
+# Querying the ontology and get the names of researchers #
+##########################################################
 sparql_select_query = """
 PREFIX : <http://cnam.com/CybersecurityOntology/>
 
